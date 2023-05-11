@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <button id="button">Сделать заказ</button>
+    <script>
+        let button = document.getElementById("button");
+        button.onclick = function () {
+        cash = +prompt('Введите количество наличных');
+        price = +prompt('Введите стоимость одного бургера');
+        let result, change;
+        if (price < cash) {
+          result = Math.trunc(cash / price); // избавляемся от дробной части
+          change = cash % price; // сдача
+          alert("Вы можете купить: " + result)
+          alert("Ваша сдача: " + change); // вывод
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <button id="button">Решить пример</button>
+    <script>
+        let button = document.getElementById("button");
+        button.onclick = function () {
+            do {
+                var a = +prompt('Введите первое число');
+                var b = +prompt('Введите второе число');
+                var i = prompt('Выберите знак - + / *');
+ 
+                switch (i) {
+                    case '+':
+                        alert(a + b);
+                        break;
+                    case '-':
+                        alert(a - b);
+                        break;
+                    case '/':
+                        alert(a / b);
+                        break;
+                    case '*':
+                        alert(a * b);
+                    default:
+                        break;
+                }
+ 
+            } while (confirm('Хотите ли вы решить еще один пример?'));
+        }
+    </script>
+</body>
+</html>

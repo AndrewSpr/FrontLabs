@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <button id="button">Высчитать</button>
+    <script>
+      let button = document.getElementById("button");
+      button.onclick = function () {
+        let number = +prompt("Введите число: ");
+        let degree = +prompt("Введите цифру от 0 до 9: ");
+
+        if (degree >= 0 && degree < 10) {
+          let arr = [];
+          while (number > 0) {
+            arr.unshift(number % 10);
+            number = (number / 10) | 0;
+          } // с помощью цикла while заполняем массив(цикл для того чтобы не преобразовывать лишний раз в строки)
+
+          return alert(`Результат вычислений: ${Math.pow(arr[1], degree)}`)
+        }
+       return alert("Одно из значений введено не правильно! Повторите попытку")
+      };
+    </script>
+  </body>
+</html>

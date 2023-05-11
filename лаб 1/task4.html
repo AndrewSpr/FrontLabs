@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function describeAge(age) {
+        const units = [
+          "",
+          "один",
+          "два",
+          "три",
+          "чотири",
+          "п'ять",
+          "шість",
+          "сім",
+          "вісім",
+          "дев'ять",
+        ];
+        const tens = [
+          "десять",
+          "одинадцять",
+          "дванадцять",
+          "тринадцять",
+          "чотирнадцять",
+          "п'ятнадцять",
+          "шістнадцять",
+          "сімнадцять",
+          "вісімнадцять",
+          "дев'ятнадцять",
+        ];
+        const decades = [
+          "",
+          "",
+          "двадцять",
+          "тридцять",
+          "сорок",
+          "п'ятдесят",
+          "шістдесят",
+        ];
+
+        if (age >= 1 && age <= 9) {
+          return `${units[age]} рік`;
+        } else if (age >= 10 && age <= 19) {
+          return `${tens[age - 10]} рік`;
+        } else if (age % 10 === 0) {
+          const decadeIndex = Math.floor(age / 10);
+          return `${decades[decadeIndex]} років`;
+        } else {
+          const decadeIndex = Math.floor(age / 10);
+          const unitIndex = age % 10;
+          return `${decades[decadeIndex]} ${units[unitIndex]} роки`;
+        }
+      }
+
+      const age = parseInt(prompt("Введіть вік (від 1 до 69):"), 10);
+      const description = describeAge(age);
+
+     alert(description);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <button id="button">Высчитать</button>
+    <script>
+      let button = document.getElementById("button");
+      button.onclick = function () {
+        let number = +prompt("Введите пятизначное число");
+        if (String(number).length = 4) {
+          let str = number + "";
+          str = str.replace(/(\d)(\d)(\d)(\d)(\d)/, "$5$2$3$4$1");
+          return alert("Ваше число: " + Number(str));
+        }
+
+        return alert("Введите пятизначное число");
+      };
+    </script>
+  </body>
+</html>
