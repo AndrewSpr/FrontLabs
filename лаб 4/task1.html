@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="checkboxes">
+      <input class="checkbox" type="checkbox" value="ua" />
+      <label>Ukrainian</label>
+      <input class="checkbox" type="checkbox" value="sp" />
+      <label>Spanish</label>
+      <input class="checkbox" type="checkbox" value="ger" />
+      <label>Germany</label>
+    </div>
+    <div id="output">*</div>
+    <button onclick="getChecked()" class="confirm">Ok</button>
+
+    <script>
+      function getChecked() {
+        let checkboxes = document.getElementsByClassName("checkbox");
+        let str = "";
+        let checkboxesChecked = [];
+        for (let index = 0; index < checkboxes.length; index++) {
+          if (checkboxes[index].checked) {
+            checkboxesChecked.push(checkboxes[index].value);
+          }
+        }
+        str = checkboxesChecked.join(",");
+        output.innerHTML = str;
+      }
+    </script>
+  </body>
+</html>

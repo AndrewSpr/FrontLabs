@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Заливка квадратиків кольором</title>
+  <style>
+    .color-palette {
+      display: flex;
+      justify-content: center;
+    }
+
+    .color-palette div {
+      width: 30px;
+      height: 30px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .canvas {
+      display: flex;
+      flex-wrap: wrap;
+      width: 300px;
+      margin-top: 20px;
+    }
+
+    .canvas div {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="color-palette">
+    <div style="background-color: red;" onclick="selectColor('red')"></div>
+    <div style="background-color: blue;" onclick="selectColor('blue')"></div>
+    <div style="background-color: green;" onclick="selectColor('green')"></div>
+    <div style="background-color: yellow;" onclick="selectColor('yellow')"></div>
+  </div>
+
+  <div class="canvas"></div>
+
+  <script>
+    let selectedColor = 'black';
+    function selectColor(color) {
+      selectedColor = color;
+    }
+
+    function fillSquare(event) {
+      event.target.style.backgroundColor = selectedColor;
+    }
+    const canvas = document.querySelector('.canvas');
+    for (let i = 0; i < 100; i++) {
+      const square = document.createElement('div');
+      square.addEventListener('click', fillSquare);
+      canvas.appendChild(square);
+    }
+  </script>
+</body>
+</html>

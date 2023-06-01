@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.wrapper {
+				position: relative;
+				width: 400px;
+				height: 400px;
+				/* margin: 0 auto; */
+				border: 2px solid;
+			}
+			.block {
+				width: 40px;
+				height: 40px;
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+		<div class="wrapper">
+			<div class="block" draggable="true"></div>
+		</div>
+
+		<script>
+			const block = document.querySelector(".block");
+			const wrapper = document.querySelector(".wrapper");
+
+			block.onmousedown = function (event) {
+				let shiftX = event.clientX - block.getBoundingClientRect().left;
+				let shiftY = event.clientY - block.getBoundingClientRect().top;
+
+				block.style.position = "absolute";
+				block.style.zIndex = 1000;
+				document.body.append(block);
+
+				moveAt(event.pageX, event.pageY);
+
+				function moveAt(pageX, pageY) {
+					block.style.left = pageX - shiftX + "px";
+					block.style.top = pageY - shiftY + "px";
+				}
+
+				function onMouseMove(event) {
+					moveAt(event.pageX, event.pageY);
+				}
+
+				document.addEventListener("mousemove", onMouseMove);
+
+				block.onmouseup = function () {
+					document.removeEventListener("mousemove", onMouseMove);
+					block.onmouseup = null;
+				};
+			};
+
+			block.ondragstart = function () {
+				return false;
+			};
+		</script>
+	</body>
+</html>

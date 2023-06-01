@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.block {
+				display: flex;
+				max-width: 220px;
+				flex-wrap: wrap;
+			}
+			.white {
+				width: 40px;
+				height: 40px;
+				background: #fff;
+				border: 1px solid;
+			}
+			.blue {
+				width: 40px;
+				height: 40px;
+				background: blue;
+				border: 1px solid;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+		<textarea name="" id="textarea" cols="30" rows="10"></textarea>
+		<button id="btn">Отправить</button>
+
+		<div class="block"></div>
+		<script>
+			let textarea = document.querySelector("#textarea");
+			let btn = document.querySelector("#btn");
+			let block = document.querySelector(".block");
+
+			btn.addEventListener("click", () => {
+				let arr = textarea.value.split("");
+				arr.forEach(function (i) {
+					if (i == 0) {
+						let white = document.createElement("div");
+						white.classList.add("white");
+						block.append(white);
+					} else if (i == 1) {
+            let blue = document.createElement("div");
+						blue.classList.add("blue");
+						block.append(blue);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

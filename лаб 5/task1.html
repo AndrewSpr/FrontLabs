@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+
+		<table id="table"></table>
+		<br />
+		<label for="">FirstName</label>
+		<input type="text" name="name" id="first" /> <br />
+		<label for="">LastName</label>
+		<input type="text" name="name" id="second" /><br />
+		<input type="submit" value="Add" onclick="handleSubmit()" />
+
+		<script>
+			const users = [
+				{
+					"№": 1,
+					firstName: "John",
+					lastName: "Doe",
+				}
+			];
+
+			let table = document.querySelector("#table");
+			let rowHeader = table.insertRow();
+			for (let prop in users[0]) {
+				let cell = rowHeader.insertCell();
+				cell.innerText = prop;
+				console.log(prop);
+			}
+
+			for (let i = 0; i < users.length; i++) {
+				let row = table.insertRow();
+				for (let prop in users[i]) {
+					let cell = row.insertCell();
+					cell.innerText = users[i][prop];
+				}
+			}
+
+			let num = 2;
+
+			function handleSubmit() {
+				users.length = 0;
+				let arr = {
+					"№": num++,
+					firstName: first.value,
+					lastName: second.value,
+				};
+				users.push(arr);
+				for (let i = 0; i < users.length; i++) {
+					let row = table.insertRow();
+					for (let prop in users[i]) {
+						let cell = row.insertCell();
+						cell.innerText = users[i][prop];
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

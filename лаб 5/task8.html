@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.block {
+				max-width: 500px;
+				width: 100%;
+				border: 1px solid;
+				margin-bottom: 15px;
+			}
+			.name {
+				border-bottom: 1px solid;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 10px;
+				margin: 0;
+			}
+			.comment {
+				padding: 0 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+		<div class="wrapper"></div>
+		<br />
+		<label for="">Name</label>
+		<input type="text" name="name" id="first" /> <br />
+		<label for="">Comment</label>
+		<input type="text" name="name" id="second" /><br />
+		<input type="submit" value="Add" onclick="handleSubmit()" />
+
+		<script>
+			let wrapper = document.querySelector(".wrapper");
+			let first = document.querySelector("#first");
+			let second = document.querySelector("#second");
+
+			function handleSubmit() {
+				var today = new Date();
+				var now = today.toLocaleString();
+				let data = document.createElement("p");
+				let block = document.createElement("div");
+				block.className = "block";
+				let name = document.createElement("p");
+				name.className = "name";
+				name.innerHTML = first.value;
+				data.innerHTML = now;
+				name.append(data);
+				let com = document.createElement("p");
+				com.className = "comment";
+				com.innerHTML = second.value;
+				if (first.value.length > 5 || second.value.length > 10) {
+					block.prepend(name);
+					block.append(com);
+					wrapper.append(block);
+				} else {
+					alert("Введите имя длинее");
+					alert("Введите комментарий длинее");
+				}
+			}
+		</script>
+	</body>
+</html>

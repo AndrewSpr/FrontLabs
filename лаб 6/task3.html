@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.error {
+				color: red;
+				font-size: 20px;
+			}
+			.ok {
+				color: green;
+				font-size: 20px;
+			}
+			.small {
+				width: 30px;
+				height: 30px;
+				margin-right: 5px;
+			}
+			.big {
+				width: 150px;
+				height: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На главную</a> <br /><br />
+		<input
+			id="images"
+			type="text"
+			value='[" img1.jpg "]'
+		/>
+		<div class="wrapper">
+			<hr />
+		</div>
+
+		<button onclick="handleSumbit()">Показати</button>
+
+		<script>
+			let input2 = document.querySelector("#images");
+			let wrapper = document.querySelector(".wrapper");
+
+			function handleSumbit() {
+				try {
+					let arr = JSON.parse(input2.value);
+					let ok = document.createElement("p");
+					ok.innerHTML = "OK";
+					ok.classList.add("ok");
+					wrapper.prepend(ok);
+					arr.map((key) => {
+						let img = document.createElement("img");
+						img.setAttribute("src", key);
+						img.classList.add("small");
+						wrapper.append(img);
+						img.onclick = () => {
+							let bigImg = document.createElement("img");
+							bigImg.setAttribute("src", key);
+							bigImg.classList.add("big");
+							wrapper.append(bigImg);
+						};
+					});
+				} catch (error) {
+					let err = document.createElement("p");
+					err.innerHTML = "Неверный формат JSON";
+					err.classList.add("error");
+					wrapper.prepend(err);
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="index.html">На главную</a> <br /><br />
+		<table id="table" border="1">
+      <tr>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Math</th>
+        <th>History</th>
+        <th>Js</th>
+        <th>AVG</th>
+      </tr>
+    </table>
+		<script>
+			let table = document.querySelector("#table");
+
+			class User {
+				constructor(name, lastName, math, history, js) {
+					this.name = name;
+					this.lastName = lastName;
+					this.math = math;
+					this.history = history;
+					this.js = js;
+				}
+				sayHi() {
+					let arr = [
+						this.name,
+						this.lastName,
+						this.math,
+						this.history,
+						this.js,
+						((this.math + this.history + this.js) / 3).toFixed(2),
+					];
+					let row = table.insertRow();
+					arr.map((prop) => {
+						let cell = row.insertCell();
+						cell.innerText = prop;
+					});
+				}
+			}
+			let user1 = new User("Федорко", "Петро", 3, 4, 5);
+			let user2 = new User("Остапенко", "Сергей", 4, 5, 5);
+			let user3 = new User("Колос", "Олеся", 4, 3, 3);
+			user1.sayHi();
+			user2.sayHi();
+			user3.sayHi();
+		</script>
+	</body>
+</html>

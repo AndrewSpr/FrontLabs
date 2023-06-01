@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.block {
+				border: 2px solid blue;
+				padding: 5px;
+				width: 200px;
+        margin-bottom: 20px;
+			}
+			input {
+				border: 2px solid blue;
+				width: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">на главную</a>
+		<br /><br />
+
+		<div class="block">
+			<input id="input" type="text" placeholder="login" />
+		</div>
+
+		<div class="block">
+			<input id="input" type="text" placeholder="password" />
+		</div>
+
+		<div class="block">
+			<textarea id="input" cols="20" rows="3" placeholder="description"></textarea>
+		</div>
+
+		<script>
+			window.onload = () => {
+				const block = document.querySelectorAll(".block");
+
+				block.forEach((e) => {
+					const input = e.querySelector("#input");
+					input.addEventListener("click", () => {
+						e.style.background = "blue";
+					});
+					input.addEventListener("blur", () => {
+						e.style.background = "";
+					});
+				});
+			};
+		</script>
+	</body>
+</html>

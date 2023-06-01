@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="index.html">на главную</a>
+		<br /><br />
+
+		<h2>Список товарiв</h2>
+		<table>
+			<tbody>
+				<tr>
+					<td>Брюки</td>
+					<td><button id="btn-1">Замовити</button></td>
+				</tr>
+				<tr>
+					<td>Сорочка</td>
+					<td><button id="btn-2">Замовити</button></td>
+				</tr>
+				<tr>
+					<td>Шорти</td>
+					<td><button id="btn-3">Замовити</button></td>
+				</tr>
+				<tr>
+					<td>Туфлi</td>
+					<td><button id="btn-4">Замовити</button></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>Кошик</h2>
+		<table>
+			<tbody>
+				<tr>
+					<td>Товар</td>
+					<td>Кiлькiсть</td>
+				</tr>
+				<tr>
+					<td>Брюки</td>
+					<td id="cart-1"></td>
+				</tr>
+				<tr>
+					<td>Сорочка</td>
+					<td id="cart-2"></td>
+				</tr>
+				<tr>
+					<td>Шорти</td>
+					<td id="cart-3"></td>
+				</tr>
+				<tr>
+					<td>Туфлi</td>
+					<td id="cart-4"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<script>
+			const btnFirst = document.querySelector("#btn-1");
+			const cartFirst = document.querySelector("#cart-1");
+      const btnSec = document.querySelector("#btn-2");
+			const cartSec = document.querySelector("#cart-2");
+      const btnThird = document.querySelector("#btn-3");
+			const cartThird = document.querySelector("#cart-3");
+      const btnFourth = document.querySelector("#btn-4");
+			const cartFourth = document.querySelector("#cart-4");
+
+			let numberFirst = 0;
+			let numberSec = 0;
+			let numberThird = 0;
+			let numberFourth = 0;
+			btnFirst.addEventListener("click", () => {
+				numberFirst++;
+				cartFirst.innerHTML = numberFirst;
+			});
+      btnSec.addEventListener("click", () => {
+				numberSec++;
+				cartSec.innerHTML = numberSec;
+			});
+      btnThird.addEventListener("click", () => {
+				numberThird++;
+				cartThird.innerHTML = numberThird;
+			});
+      btnFourth.addEventListener("click", () => {
+				numberFourth++;
+				cartFourth.innerHTML = numberFourth;
+			});
+		</script>
+	</body>
+</html>

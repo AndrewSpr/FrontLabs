@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="index.html">На главную</a> <br /><br />
+		<input type="text" id="input" /><br />
+		<textarea cols="30" rows="5" id="area"></textarea><br />
+		<div class="checkbox">
+			<input type="checkbox" id="check" onclick="save_checkbox('check')" />
+		</div>
+		<br />
+		<script>
+			area.value = localStorage.getItem("area");
+			area.oninput = () => {
+				localStorage.setItem("area", area.value);
+			};
+
+			input.value = localStorage.getItem("input");
+			input.oninput = () => {
+				localStorage.setItem("input", input.value);
+			};
+
+			function save_checkbox(name) {
+				localStorage[name] = document.getElementById(name).checked ? 1 : 0;
+			}
+			window.onload = function load_checkbox() {
+				let blockCheck = document.querySelector(".checkbox");
+				let input = blockCheck.getElementsByTagName("input");
+
+				for (let i = 0; i < input.length; i++) {
+					let checkbox = input[i];
+					checkbox.checked = parseInt(localStorage[checkbox.id], 10);
+				}
+			};
+		</script>
+	</body>
+</html>

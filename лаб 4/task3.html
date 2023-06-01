@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Множення</title>
+</head>
+<body>
+  <h1>Таблиця множення</h1>
+
+  <p id="score">Рахунок: 0</p>
+
+  <button onclick="nextTask()">Наступне завдання</button>
+
+  <p id="task">Введіть відповідь до завдання</p>
+
+  <input type="text" id="answer" placeholder="Введіть відповідь">
+
+  <button onclick="checkAnswer()">Перевірити</button>
+
+  <p id="result"></p>
+
+  <script>
+    var score = 0;
+    var task = ""; 
+    var answer = 0; 
+    function generateTask() {
+      var num1 = Math.floor(Math.random() * 9) + 1;
+      var num2 = Math.floor(Math.random() * 9) + 1; 
+      answer = num1 * num2;
+      task = `${num1} * ${num2}`; 
+      document.getElementById("task").textContent = task;
+    }
+    function checkAnswer() {
+      var userAnswer = parseInt(document.getElementById("answer").value);
+
+      if (userAnswer === answer) {
+        score += 1;
+        document.getElementById("score").textContent = `Рахунок: ${score}`;
+        document.getElementById("result").textContent = "Правильно!";
+      } else {
+        document.getElementById("result").textContent = "Неправильно!";
+      }
+
+      document.getElementById("answer").value = "";
+    }
+    function nextTask() {
+      generateTask();
+      document.getElementById("result").textContent = "";
+    }
+
+    generateTask();
+  </script>
+</body>
+</html>

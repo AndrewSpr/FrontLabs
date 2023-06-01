@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+      .wrapper{
+        padding-top: 100px;
+        display: flex;
+        gap: 50px;
+        align-items: center;
+      }
+			.calc {
+				display: flex;
+        align-items: center;
+				gap: 10px;
+			}
+      .block{
+        background: blue;
+      }
+      input[type="number"]{
+        height: 20px;
+        width: 40px;
+      }
+		</style>
+	</head>
+	<body>
+		<a href="index.html">на главную</a>
+		<br /><br />
+
+		<div class="wrapper">
+      <div class="wrapper__left">
+        <div class="calc">
+          <p>width</p>
+          <p class="min">0</p>
+          <input
+            id="width"
+            type="range"
+            min="0"
+            value="400"
+            max="500"
+            step="1"
+            oninput="handleWidthValue(this.value)"
+            onchange="handleWidthValue(this.value)"
+          />
+          <p class="max">500</p>
+          <input id="widthVal" type="number" value="400" />
+        </div>
+        <div class="calc">
+          <p>height</p>
+          <p class="min">0</p>
+          <input
+            id="height"
+            type="range"
+            min="0"
+            value="200"
+            max="500"
+            step="1"
+            oninput="handleHeightValue(this.value)"
+            onchange="handleHeightValue(this.value)"
+          />
+          <p class="max">500</p>
+          <input id="heightVal" type="number" value="200" />
+        </div>
+        <div class="calc">
+          <p>rotate</p>
+          <p class="min">0</p>
+          <input
+            id="rotate"
+            type="range"
+            min="0"
+            value="10"
+            max="360"
+            step="1"
+            oninput="handleRotateValue(this.value)"
+            onchange="handleRotateValue(this.value)"
+          />
+          <p class="max">360</p>
+          <input id="rotateVal" type="number" value="10" />
+        </div>
+      </div>
+      <div class="block"></div>
+    </div>
+
+    
+
+		<script>
+      window.onload = calc;
+			function handleWidthValue(newWidthVal) {
+				document.getElementById("widthVal").value = newWidthVal;
+			}
+      function handleHeightValue(newHeightVal) {
+				document.getElementById("heightVal").value = newHeightVal;
+			}
+      function handleRotateValue(newRotateVal) {
+				document.getElementById("rotateVal").value = newRotateVal;
+			}
+
+			document.getElementById("width").addEventListener("input", calc);
+			document.getElementById("height").addEventListener("input", calc);
+			document.getElementById("rotate").addEventListener("input", calc);
+			function calc() {
+				let width = document.getElementById("width").value;
+				let height = document.getElementById("height").value;
+				let rotate = document.getElementById("rotate").value;
+				const block = document.querySelector(".block");
+				block.setAttribute("style", "width:" + width + "px;" + "height:" + height + "px;" + "transform: rotate(" + rotate + "deg);");
+			}
+		</script>
+	</body>
+</html>

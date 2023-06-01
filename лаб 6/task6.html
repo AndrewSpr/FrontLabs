@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.block{
+				max-width: 750px;
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+			}
+			img {
+				width: 150px;
+				height: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На главную</a> <br /><br />
+		<button id="btn">submit</button>
+		<div class="block"></div>
+		<script>
+			let btn = document.querySelector("#btn");
+			let block = document.querySelector(".block");
+
+			btn.addEventListener("click", () => {
+				try {
+					fetch("https://dog.ceo/api/breeds/image/random")
+						.then((res) => {
+							if (res.ok) {
+								return res.json();
+							} else {
+								return Promise.reject(`Http error: ${res.status}`);
+							}
+						})
+						.then((res) => {
+							console.log(res);
+							let img = document.createElement("img");
+							img.setAttribute("src", res.message);
+							block.append(img);
+						});
+				} catch (err) {
+					console.log(err);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Заливка сітки кольорами</title>
+  <style>
+    .color-palette {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .color-palette div {
+      width: 30px;
+      height: 30px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      width: 300px;
+      height: 300px;
+    }
+
+    .grid div {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="color-palette">
+    <input type="color" id="color-picker" onchange="selectColor(event.target.value)">
+    <button onclick="clearSelectedColor()">Clear</button>
+  </div>
+
+  <div class="grid" onclick="fillCell(event)"></div>
+
+  <script>
+    let selectedColor = '';
+
+    function selectColor(color) {
+      selectedColor = color;
+    }
+
+    function clearSelectedColor() {
+      selectedColor = '';
+    }
+
+    function fillCell(event) {
+      if (event.target.classList.contains('grid')) return; // Ігноруємо клік на саму сітку
+      event.target.style.backgroundColor = selectedColor;
+    }
+
+    const grid = document.querySelector('.grid');
+
+    // Створення клітинок у сітці
+    for (let i = 0; i < 100; i++) {
+      const cell = document.createElement('div');
+      grid.appendChild(cell);
+    }
+  </script>
+</body>
+</html>

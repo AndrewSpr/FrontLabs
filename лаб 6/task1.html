@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="index.html">На главную</a> <br /><br />
+		<form name="form1">
+			<input
+				type="button"
+				class="red"
+				value="prev"
+				onmousedown="prev(document.form1.text1);"
+			/>
+			<input
+				type="button"
+				class="red"
+				value="next"
+				onmousedown="next(document.form1.text1);"
+			/>
+			<br />
+			<textarea
+				rows="7"
+				cols="50"
+				name="text1"
+				onkeydown="countclik(document.form1.text1);"
+			>
+			</textarea>
+		</form>
+
+		<script>
+			function iObject() {
+				this.i;
+				return this;
+			}
+
+			var myObject = new iObject();
+			myObject.i = 0;
+			var myObject2 = new iObject();
+			myObject2.i = 0;
+			store_text = new Array();
+
+			store_text[0] = "";
+
+			function countclik(tag) {
+				myObject.i++;
+				var y = myObject.i;
+				var x = tag.value;
+				store_text[y] = x;
+			}
+
+			function prev(tag) {
+				if (myObject2.i < myObject.i) {
+					myObject2.i++;
+				} else {
+					alert("Finish prev Action");
+				}
+				var z = store_text.length;
+				z = z - myObject2.i;
+				if (store_text[z]) {
+					tag.value = store_text[z];
+				} else {
+					tag.value = store_text[0];
+				}
+			}
+
+			function next(tag) {
+				if (myObject2.i > 1) {
+					myObject2.i--;
+				} else {
+					alert("Finish next Action");
+				}
+				var z = store_text.length;
+				z = z - myObject2.i;
+				if (store_text[z]) {
+					tag.value = store_text[z];
+				} else {
+					tag.value = store_text[0];
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <label
+        ><input type="checkbox" name="email" value="email1@example.com" />
+        email1@example.com</label
+      ><br />
+      <label
+        ><input type="checkbox" name="email" value="email2@example.com" />
+        email2@example.com</label
+      ><br />
+      <label
+        ><input type="checkbox" name="email" value="email3@example.com" />
+        email3@example.com</label
+      ><br />
+      <label
+        ><input type="checkbox" name="email" value="email4@example.com" />
+        email4@example.com</label
+      ><br />
+    </form>
+    <div id="selectedEmails"></div>
+
+    <script>
+      const selectedEmailsDiv = document.getElementById("selectedEmails");
+
+      const selectedEmails = [];
+
+      const emailCheckboxes = document.querySelectorAll(
+        'input[type="checkbox"][name="email"]'
+      );
+
+      emailCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+          const email = this.value;
+
+          if (this.checked) {
+            if (!selectedEmails.includes(email)) {
+              selectedEmails.push(email);
+            }
+          } else {
+            const index = selectedEmails.indexOf(email);
+            if (index > -1) {
+              selectedEmails.splice(index, 1);
+            }
+          }
+
+          selectedEmailsDiv.innerText = selectedEmails.join("; ");
+        });
+      });
+    </script>
+  </body>
+</html>

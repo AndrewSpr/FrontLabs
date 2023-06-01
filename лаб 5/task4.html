@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.block {
+				display: flex;
+				max-width: 400px;
+				flex-wrap: wrap;
+				gap: 20px;
+				padding: 12px;
+				background: grey;
+				border: 1px solid rgb(68, 68, 68);
+        margin-bottom: 20px;
+			}
+			#view {
+				flex-basis: 100%;
+				width: 100%;
+			}
+			.edit {
+				border: 3px solid blue;
+				padding: 0px;
+				flex-basis: 100%;
+				min-height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+
+		<div class="block">
+			<button id="remove">remove</button>
+			<button id="change">change</button>
+			<div id="view">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
+				numquam corporis neque, delectus sint placeat corrupti modi obcaecati
+				quas et.
+			</div>
+		</div>
+		<div class="block">
+			<button id="remove">remove</button>
+			<button id="change">change</button>
+			<div id="view">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
+				numquam corporis neque, delectus sint placeat corrupti modi obcaecati
+				quas et.
+			</div>
+		</div>
+		<div class="block">
+			<button id="remove">remove</button>
+			<button id="change">change</button>
+			<div id="view">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
+				numquam corporis neque, delectus sint placeat corrupti modi obcaecati
+				quas et.
+			</div>
+		</div>
+
+		<script>
+			let block = document.querySelectorAll(".block");
+
+			block.forEach((e) => {
+				let change = e.querySelector("#change");
+				let remove = e.querySelector("#remove");
+				let area = null;
+				let view = e.querySelector("#view");
+
+				remove.addEventListener("click", () => {
+					e.remove();
+				});
+
+				change.onclick = function () {
+					editStart();
+				};
+
+				function editStart() {
+					area = document.createElement("textarea");
+					area.className = "edit";
+					area.value = view.innerHTML;
+
+					area.onkeydown = function (event) {
+						if (event.key == "Enter") {
+							this.blur();
+						}
+					};
+
+					area.onblur = function () {
+						editEnd();
+					};
+
+					view.replaceWith(area);
+					area.focus();
+				}
+
+				function editEnd() {
+					view.innerHTML = area.value;
+					area.replaceWith(view);
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#foo {
+				width: 50px;
+				height: 50px;
+				background: tomato;
+				border-radius: 50%;
+				position: absolute;
+				transition: 0.7s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="index.html">На галвную</a> <br /><br />
+		<div id="foo"></div>
+
+		<script>
+			const minDistance = 100;
+			const obj = document.getElementById("foo");
+
+			const maxX = document.documentElement.clientWidth - 60;
+			const maxY = document.documentElement.clientHeight - 60;
+
+			document.addEventListener("mousemove", function (evt) {
+				const objCoords = obj.getBoundingClientRect();
+				const distance = calcDistance(
+					evt.clientX,
+					evt.clientY,
+					objCoords.x,
+					objCoords.y
+				);
+				if (distance < minDistance) {
+					obj.style.left = getRandomInt(0, maxX) + "px";
+					obj.style.top = getRandomInt(0, maxY) + "px";
+				}
+			});
+
+			function calcDistance(x1, y1, x2, y2) {
+				return Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+			}
+
+			function getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+		</script>
+	</body>
+</html>

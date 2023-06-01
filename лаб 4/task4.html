@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Множення</title>
+</head>
+<body>
+  <h1>Таблиця множення</h1>
+
+  <p id="score">Рахунок: 0</p>
+
+  <button onclick="nextTask()">Наступне завдання</button>
+
+  <p id="task">Виберіть правильний варіант відповіді</p>
+
+  <form id="answersForm">
+    <label>
+      <input type="radio" name="answer" value="false"> 4
+    </label>
+    <label>
+      <input type="radio" name="answer" value="false"> 8
+    </label>
+    <label>
+      <input type="radio" name="answer" value="false"> 12
+    </label>
+    <label>
+      <input type="radio" name="answer" value="false"> 16
+    </label>
+  </form>
+
+  <button onclick="checkAnswer()">Перевірити</button>
+
+  <p id="result"></p>
+
+  <script>
+    var score = 0; // Змінна для збереження рахунку
+    var task = ""; // Змінна для збереження поточного завдання
+    var answer = ""; // Змінна для збереження правильної відповіді
+
+    // Функція для генерації нового завдання
+    function generateTask() {
+      var num1 = Math.floor(Math.random() * 9) + 1; // Перше число від 1 до 9
+      var num2 = Math.floor(Math.random() * 9) + 1; // Друге число від 1 до 9
+      answer = (num1 * num2).toString(); // Правильна відповідь
+      task = `${num1} * ${num2}`; // Текст завдання
+      document.getElementById("task").textContent = task;
+
+      // Задаємо варіанти відповідей у радіокнопках
+      var answersForm = document.getElementById("answersForm");
+      var options = ["4", "8", "12", "16"];
+      shuffleArray(options); // Перемішуємо варіанти відповідей
+      for (var i = 0; i < answersForm.elements.length; i++) {
+        var radio = answersForm.elements[i];
+        radio.value = options[i];
+        radio.checked = false;
+      }
+    }
+
+    // Функція для перемішування елементів масиву (Fisher-Yates shuffle algorithm)
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+
+    // Функція для перевірки відповіді
+    function checkAnswer() {
+      var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+
+      if (selectedAnswer && selectedAnswer.value === answer) {
+        score += 1; // Збільшуємо рахунок при правильній відповіді
+        document.getElementById("score").textContent = `Рахунок: ${score}`;
+        document.getElementById("result").textContent = "Правильно!";
+      } else {
+        document.getElementById("result").textContent = "Неправильно!";
+      }
+
+      // Блокуємо радіокнопки після вибору
+      var answersForm = document.getElementById("answersForm");
+      for (var i = 0; i < answersForm.elements.length; i++) {
+        answersForm.elements[i].disabled = true;
+      }
+    }
+
+    // Функція для переходу до наступного завдання
+    function nextTask() {
+      // Розблоковуємо радіокнопки перед новим завданням
+      var answersForm = document.getElementById("answersForm");
+      for (var i = 0; i < answersForm.elements.length; i++) {
+        answersForm.elements[i].disabled = false;
+        answersForm.elements[i].checked = false;
+      }
+
+      generateTask();
+      document.getElementById("result").textContent = "";
+    }
+
+    // Початкове завдання
+    generateTask();
+  </script>
+</body>
+</html>

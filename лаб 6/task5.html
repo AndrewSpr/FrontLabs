@@ -1,0 +1,87 @@
+!DOCTYPE html>
+<html>
+<head>
+  <title>Static Methods and Properties</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    canvas {
+      border: 1px solid #000;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button onclick="drawShape()">Draw Shape</button>
+    <button onclick="fillPaint()">Fill Paint</button>
+    <canvas id="canvas" width="300" height="300"></canvas>
+  </div>
+
+  <script>
+    class Shape {
+      static total = 0;
+      a;
+
+      constructor(a) {
+        this.a = a;
+      }
+
+      static fill() {
+        Shape.total = 100;
+        console.log('Paint filled to 100%');
+      }
+
+      draw() {
+        if (Shape.total <= 0) {
+          console.log('Out of paint! Please refill.');
+          return;
+        }
+
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        // Очищення полотна
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Малювання фігури
+        context.fillStyle = '#FF0000'; // Червоний колір
+        if (this.a <= canvas.width / 2 && this.a <= canvas.height / 2) {
+          // Малювання круга
+          context.beginPath();
+          context.arc(canvas.width / 2, canvas.height / 2, this.a, 0, 2 * Math.PI);
+          context.fill();
+        } else {
+          // Малювання квадрата
+          const x = (canvas.width - this.a) / 2;
+          const y = (canvas.height - this.a) / 2;
+          context.fillRect(x, y, this.a, this.a);
+        }
+
+        console.log(`Drawing shape with size ${this.a}. Paint left: ${Shape.total}%`);
+        Shape.total -= 10;
+      }
+    }
+
+    function drawShape() {
+      const shape = new Shape(100);
+      shape.draw();
+    }
+
+    function fillPaint() {
+      Shape.fill();
+    }
+  </script>
+</body>
+</html>
